@@ -20,15 +20,18 @@ execute "fix_owner" do
 end
 
 destination_directory = ""
+app_name = ""
 
-https_repo_match = node['goproject']['repository'].match(/^https:\/\/(.*?)\/(.*?)/)
+https_repo_match = node['goproject']['repository'].match(/^https:\/\/(.*?)\/(.*?)\/(.*?)\.git/)
 if https_repo_match && https_repo_match[1] && https_repo_match[2]
   destination_directory = File.join(node['goproject']['gopath'], "src", https_repo_match[1], https_repo_match[2])
+  app_name = https_repo_match[3]
 end
 
-git_repo_match = node['goproject']['repository'].match(/^git@(.*?):(.*?)/)
+git_repo_match = node['goproject']['repository'].match(/^git@(.*?):(.*?)\/(.*?)\.git/)
 if git_repo_match && git_repo_match[1] && git_repo_match[2]
   destination_directory = File.join(node['goproject']['gopath'], "src", git_repo_match[1], git_repo_match[2])
+  app_name = git_repo_match[3]
 end
 
 if !destination_directory.nil?
@@ -38,9 +41,10 @@ if !destination_directory.nil?
     recursive true
   end
 
+  git_destination_directory = File.join(destination_directory, app_name)
   # grab the specified repository and branch of streamtools
   # then notify the next block to build and run it
-  git destination_directory do
+  git git_destination_directory do
     repository node['goproject']['repository']
     revision node['goproject']['branch']
     action :sync

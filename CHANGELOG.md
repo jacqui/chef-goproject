@@ -13,3 +13,6 @@ goproject CHANGELOG
 -----
 - [jacqui] - bugfix: on the previous bugfix, because details, details.
 
+0.1.3
+-----
+- [jacqui] - bugfix: making directories and checking out a git repo to the right place are hard :(
