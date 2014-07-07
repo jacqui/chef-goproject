@@ -16,3 +16,7 @@ goproject CHANGELOG
 0.1.3
 -----
 - [jacqui] - bugfix: making directories and checking out a git repo to the right place are hard :(
+
+0.1.4
+-----
+- [jacqui] - goproject will `go get .` in your project dir.

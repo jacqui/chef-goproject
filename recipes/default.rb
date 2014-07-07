@@ -50,4 +50,13 @@ if !destination_directory.nil?
     action :sync
     user "ubuntu"
   end
+
+  bash "go_get_deps" do
+    cwd git_destination_directory
+    environment "PATH" => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/go/bin:/home/ubuntu/go/bin", "GOPATH" => "/home/ubuntu/go"
+    user "ubuntu"
+    code <<-EOH
+     go get .
+    EOH
+  end
 end
