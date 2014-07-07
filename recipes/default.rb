@@ -32,7 +32,7 @@ if git_repo_match && git_repo_match[1] && git_repo_match[2]
 end
 
 if !destination_directory.nil?
-  directory node['goproject']['gopath'] do
+  directory destination_directory do
     action :create
     owner "ubuntu"
     recursive true

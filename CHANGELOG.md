@@ -9,3 +9,7 @@ goproject CHANGELOG
 -----
 - [jacqui] - bugfix: make sure the $GOPATH/src directory exists.
 
+0.1.2
+-----
+- [jacqui] - bugfix: on the previous bugfix, because details, details.
+
